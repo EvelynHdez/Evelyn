@@ -1,0 +1,28 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>Encuesta</ion-card-subtitle>
+    <ion-card-title>¿Me ayudas con una encuesta?</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+
+    <ion-toggle [(ngModel)]="toggle" color="primary"></ion-toggle>
+    
+    <div *ngIf="toggle==true">
+      <form>
+
+        <ion-input required [(ngModel)]="name" name="name" placeholder="Nombres"></ion-input>
+        <ion-input [(ngModel)]="lastName" name="lastName" placeholder="Apellidos" required></ion-input>
+        <ion-input [(ngModel)]="phone" name="phone" placeholder="Teléfono"></ion-input>
+
+        <ion-select [(ngModel)]="city-value" name="city-value" okText="Seleccionar" cancelText="Atrás" placeholder="Municipio">
+          <ion-select-option *ngFor="let city of cities">{{city.name}}</ion-select-option>
+        </ion-select>
+
+        <ion-button type="reset" color="danger">Borrar</ion-button>
+        <ion-button *ngIf="name!=null" type="reset" (click)=sendForm(name,lastName,phone,city-value) >Enviar</ion-button>
+      </form>
+    </div>
+
+  </ion-card-content>
+</ion-card>
